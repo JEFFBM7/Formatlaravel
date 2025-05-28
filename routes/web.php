@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Contracts\View\View;
 use App\Models\Post;
 use App\Http\Controllers\BlogController;
 use Illuminate\Pagination\Paginator;
@@ -22,10 +23,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test-tailwind', function () {
-    return view('test-tailwind');
-});
-
 Route::prefix("/blog")->controller(BlogController::class)->name("blog.")->group(function(){
 
     Route::get('/', 'indexBlog')->name('indexBlog');
@@ -36,3 +33,7 @@ Route::prefix("/blog")->controller(BlogController::class)->name("blog.")->group(
     ])->name('showBlog');
     Paginator::useBootstrap(); // Use Bootstrap for pagination styling 
 });
+Route::get('/test',function():View{
+    return view('test');
+})->name('test');
+
